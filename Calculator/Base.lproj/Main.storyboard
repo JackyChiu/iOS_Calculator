@@ -19,19 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAh-FN-KFT" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="572" width="93" height="95"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                <state key="normal" title="0">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMx-v6-AA0" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="93" y="572" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +28,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -54,7 +41,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -67,12 +54,15 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="equalButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YVS-PP-GHx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMe-aE-Ray" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="478" width="93" height="95"/>
+                                <rect key="frame" x="0.0" y="477" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="gjO-TR-iz3"/>
@@ -83,9 +73,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="oneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JDX-X6-jxI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eh4-6o-clJ" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="93" y="477" width="93" height="95"/>
@@ -96,9 +89,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="twoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JG6-I0-o5j"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGi-Ay-WZF" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="186" y="477" width="93" height="95"/>
@@ -109,7 +105,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -122,12 +118,15 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="plusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rzv-g6-AiW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH3-4g-heJ" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="383" width="93" height="95"/>
+                                <rect key="frame" x="0.0" y="382" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="PaS-ec-Iub"/>
@@ -138,12 +137,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHf-Ls-FXh" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="93" y="383" width="93" height="95"/>
+                                <rect key="frame" x="93" y="382" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="5">
@@ -151,12 +150,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZk-As-Sxp" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="186" y="383" width="93" height="95"/>
+                                <rect key="frame" x="186" y="382" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="6">
@@ -164,12 +163,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eI-pn-Bhx" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="279" y="383" width="96" height="95"/>
+                                <rect key="frame" x="279" y="382" width="96" height="95"/>
                                 <color key="backgroundColor" red="0.0" green="0.80552043332718437" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="-">
@@ -177,12 +176,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80U-E9-kyZ" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="288" width="93" height="95"/>
+                                <rect key="frame" x="0.0" y="287" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="sf5-PL-agg"/>
@@ -193,12 +192,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-1Q-6c7" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="93" y="288" width="93" height="95"/>
+                                <rect key="frame" x="93" y="287" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="8">
@@ -206,12 +205,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGp-gI-uHi" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="186" y="288" width="93" height="95"/>
+                                <rect key="frame" x="186" y="287" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="9">
@@ -219,12 +218,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-Ak-ptl" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="279" y="288" width="96" height="95"/>
+                                <rect key="frame" x="279" y="287" width="96" height="95"/>
                                 <color key="backgroundColor" red="0.0" green="0.80552043332718437" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="X">
@@ -232,29 +231,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnQ-pl-Pma" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="193" width="93" height="95"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="kcl-BP-oGT"/>
-                                    <constraint firstAttribute="height" constant="95" id="oIK-h7-j6Q"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                <state key="normal" title="C">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qge-rG-AH3" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="93" y="193" width="93" height="95"/>
+                                <rect key="frame" x="93" y="192" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="93" id="MaG-Zg-Kcr"/>
@@ -265,12 +247,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLN-Pr-co6" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="279" y="193" width="96" height="95"/>
+                                <rect key="frame" x="279" y="192" width="96" height="95"/>
                                 <color key="backgroundColor" red="0.0" green="0.80552043332718437" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <state key="normal" title="/">
@@ -278,7 +260,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -288,14 +270,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-ig-Ep4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-ig-Ep4" customClass="DesignableLabel" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQe-wM-ljW" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="186" y="193" width="93" height="95"/>
+                                <rect key="frame" x="186" y="192" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="9tM-bp-gTF"/>
@@ -307,9 +289,42 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAh-FN-KFT" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="572" width="93" height="95"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnQ-pl-Pma" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="192" width="93" height="95"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="kcl-BP-oGT"/>
+                                    <constraint firstAttribute="height" constant="95" id="oIK-h7-j6Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
+                                <state key="normal" title="C">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clearButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kFf-bU-EH7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -318,7 +333,7 @@
                             <constraint firstItem="lLN-Pr-co6" firstAttribute="leading" secondItem="DQe-wM-ljW" secondAttribute="trailing" id="1In-dz-cCe"/>
                             <constraint firstItem="yZk-As-Sxp" firstAttribute="top" secondItem="6eI-pn-Bhx" secondAttribute="top" id="1NC-g9-sKw"/>
                             <constraint firstItem="yZk-As-Sxp" firstAttribute="leading" secondItem="DGp-gI-uHi" secondAttribute="leading" id="1Tb-HB-WaB"/>
-                            <constraint firstItem="XAh-FN-KFT" firstAttribute="top" secondItem="aH3-4g-heJ" secondAttribute="bottom" constant="94" id="3a1-z3-Pw4"/>
+                            <constraint firstItem="XAh-FN-KFT" firstAttribute="top" secondItem="aH3-4g-heJ" secondAttribute="bottom" constant="95" id="3a1-z3-Pw4"/>
                             <constraint firstItem="DQe-wM-ljW" firstAttribute="trailing" secondItem="DGp-gI-uHi" secondAttribute="trailing" id="3cy-oI-tYV"/>
                             <constraint firstItem="lOA-KQ-SIH" firstAttribute="baseline" secondItem="W6a-gM-eVc" secondAttribute="firstBaseline" id="4vh-QV-Gt9"/>
                             <constraint firstItem="OMx-v6-AA0" firstAttribute="baseline" secondItem="XAh-FN-KFT" secondAttribute="baseline" id="57B-Y1-6OT"/>
@@ -361,7 +376,7 @@
                             <constraint firstItem="yZk-As-Sxp" firstAttribute="baseline" secondItem="pHf-Ls-FXh" secondAttribute="baseline" id="SAP-L6-aFC"/>
                             <constraint firstItem="80U-E9-kyZ" firstAttribute="baseline" secondItem="TjV-1Q-6c7" secondAttribute="firstBaseline" id="UWB-hh-ExQ"/>
                             <constraint firstItem="lOA-KQ-SIH" firstAttribute="top" secondItem="W6a-gM-eVc" secondAttribute="top" id="VRN-mx-wpZ"/>
-                            <constraint firstItem="k3v-Ak-ptl" firstAttribute="top" secondItem="xmd-t7-NTa" secondAttribute="bottom" constant="94" id="VX0-kD-18M"/>
+                            <constraint firstItem="k3v-Ak-ptl" firstAttribute="top" secondItem="xmd-t7-NTa" secondAttribute="bottom" constant="93" id="VX0-kD-18M"/>
                             <constraint firstItem="OMx-v6-AA0" firstAttribute="baseline" secondItem="lOA-KQ-SIH" secondAttribute="firstBaseline" id="W0l-wF-Jve"/>
                             <constraint firstItem="mnQ-pl-Pma" firstAttribute="baseline" secondItem="Qge-rG-AH3" secondAttribute="firstBaseline" id="XhR-P4-E8G"/>
                             <constraint firstItem="OMx-v6-AA0" firstAttribute="bottom" secondItem="yK6-Ra-12F" secondAttribute="top" id="Y1q-vI-GBg"/>
@@ -388,11 +403,11 @@
                             <constraint firstItem="Qge-rG-AH3" firstAttribute="trailing" secondItem="TjV-1Q-6c7" secondAttribute="trailing" id="jnc-aa-Sh2"/>
                             <constraint firstItem="6eI-pn-Bhx" firstAttribute="leading" secondItem="gF6-S3-n34" secondAttribute="leading" id="l6s-Dy-lQN"/>
                             <constraint firstItem="aMe-aE-Ray" firstAttribute="top" secondItem="aH3-4g-heJ" secondAttribute="bottom" id="lDh-er-7Qi"/>
-                            <constraint firstItem="yK6-Ra-12F" firstAttribute="top" secondItem="aMe-aE-Ray" secondAttribute="bottom" constant="94" id="m9e-H4-WgC"/>
+                            <constraint firstItem="yK6-Ra-12F" firstAttribute="top" secondItem="aMe-aE-Ray" secondAttribute="bottom" constant="95" id="m9e-H4-WgC"/>
                             <constraint firstItem="OMx-v6-AA0" firstAttribute="top" secondItem="Eh4-6o-clJ" secondAttribute="bottom" id="nFE-NX-fgH"/>
                             <constraint firstItem="MGi-Ay-WZF" firstAttribute="trailing" secondItem="lOA-KQ-SIH" secondAttribute="trailing" id="nhm-Hy-hQ8"/>
-                            <constraint firstItem="Eh4-6o-clJ" firstAttribute="top" secondItem="TjV-1Q-6c7" secondAttribute="bottom" constant="94" id="nhp-H7-8fx"/>
-                            <constraint firstItem="mnQ-pl-Pma" firstAttribute="top" secondItem="HWW-ig-Ep4" secondAttribute="bottom" constant="95" id="nv5-Kv-not"/>
+                            <constraint firstItem="Eh4-6o-clJ" firstAttribute="top" secondItem="TjV-1Q-6c7" secondAttribute="bottom" constant="95" id="nhp-H7-8fx"/>
+                            <constraint firstItem="mnQ-pl-Pma" firstAttribute="top" secondItem="HWW-ig-Ep4" secondAttribute="bottom" constant="94" id="nv5-Kv-not"/>
                             <constraint firstItem="yZk-As-Sxp" firstAttribute="leading" secondItem="MGi-Ay-WZF" secondAttribute="leading" id="nwk-ZW-7W3"/>
                             <constraint firstItem="aH3-4g-heJ" firstAttribute="leading" secondItem="aMe-aE-Ray" secondAttribute="leading" id="pHA-fA-4be"/>
                             <constraint firstItem="k3v-Ak-ptl" firstAttribute="trailing" secondItem="lLN-Pr-co6" secondAttribute="trailing" id="pQp-3w-buC"/>
@@ -417,6 +432,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="operationsLabel" destination="HWW-ig-Ep4" id="hOb-lS-Wj2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
