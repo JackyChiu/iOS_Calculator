@@ -26,8 +26,9 @@ extension String {
 
 class ViewController: UIViewController {
     
-    var answer: Int! = 0
+    var answer: Float! = 0.0
     var operationsList = ["=","+","-","x","/"]
+    var operationsListWithoutEquals = ["+","-","x","/"]
     
     func isIn(varible:String,list: [String])->Bool{
         for i in list{
@@ -38,13 +39,35 @@ class ViewController: UIViewController {
         return false
     }
     
+    func clearLabel(){
+        if operationsLabel.text! == ""{
+            answerLabel.text = ""
+        }
+        else{
+            operationsLabel.text! = ""
+        }
+    }
+    
+    func endOfOperationsLine(operationsLine:String)->Bool{
+        for i in 0..<operationsLine.length{
+            if isIn(String(operationsLine[i]), list: operationsListWithoutEquals){
+                return false
+            }
+        }
+        return true
+    }
+    
+    func getAnswer(operationsLine:String)->Float!{
+        return Float(operationsLine[0..<operationsLine.length])
+    }
+    
     //Equations labels
     @IBOutlet weak var operationsLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
     //Number buttons
     @IBAction func clearButton(sender: UIButton) {
-        operationsLabel.text! = ""
+        clearLabel()
     }
  
     @IBAction func oneButton(sender: UIButton) {
@@ -104,79 +127,72 @@ class ViewController: UIViewController {
     @IBAction func equalButton(sender: UIButton) {
         
         var operationsLine:String
-        var input1:Int!
-        var input2:Int!
-        var position:Int!
+        var input1:Float!
+        var input2:Float!
+        var operatorPosition:Int!
+        var endPosition:Int!
         var operation:Character = "A"
         
         operationsLabel.text! += "="
         operationsLine = operationsLabel.text!
         
-        for i in 0..<operationsLine.length{
-            
-            if isIn(String(operationsLine[i]), list: operationsList){
-                input1 = Int(operationsLine[0..<i])
-                operation = operationsLine[i]
-                position = i + 1
-                //print(position)
-                //print(operation)
-                //print(input1)
-                break
+        while(endOfOperationsLine(operationsLine)==false){
+        
+            for i in 0..<operationsLine.length{
+                
+                if isIn(String(operationsLine[i]), list: operationsList){
+                    input1 = Float(operationsLine[0..<i])
+                    operation = operationsLine[i]
+                    operatorPosition = i + 1
+                    //print(operatorPosition)
+                    //print(operation)
+                    //print(input1)
+                    break
+                }
             }
+            
+            for j in operatorPosition..<operationsLine.length{
+                
+                if isIn(String(operationsLine[j]), list: operationsList){
+                    input2 = Float(operationsLine[operatorPosition..<j])
+                    endPosition = j
+                    //print(input2)
+                    //print(endPosition)
+                    //print(operation)
+                    break
+                }
+            }
+            
+            switch operation{
+                
+                case "+":
+                answer = input1 + input2
+                
+                case "-":
+                answer = input1 - input2
+                
+                case "x":
+                answer = input1 * input2
+                
+                case "/":
+                answer = input1 / input2
+                
+                default:
+                answer = nil
+                
+            }
+            
+            operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[0..<endPosition], withString: String(answer))
+            
+            //print(operationsLine)
+                
         }
         
-        for j in position..<operationsLine.length{
-            
-            if isIn(String(operationsLine[j]), list: operationsList){
-                input2 = Int(operationsLine[position..<j])
-                //print(input2)
-                //print(position)
-                //print(operation)
-                break
-            }
-        }
-        
-        switch operation{
-            
-            case "+":
-            answer = input1 + input2
-            
-            case "-":
-            answer = input1 - input2
-            
-            case "x":
-            answer = input1 * input2
-            
-            case "/":
-            answer = input1 / input2
-            
-            default:
-            answer = nil
-            
-        }
+        answer = Float(operationsLine[0..<operationsLine.length-1])
+        //print(answer)
         
         answerLabel.text = String(answer)
         
-
-        /*
-        
-        for i in operationsLine.characters.indices{
-        
-        if isIn(String(operationsLine[i]), list: operationsList){
-        input1 = Int(operationsLine.substringToIndex(i))
-        operation = operationsLine[i]
-        position = i
-        print(position)
-        //print(operation)
-        //print(input1)
-        break
-        }
-        }
-            }
-        }
-*/
-                
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
