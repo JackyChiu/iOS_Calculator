@@ -1,6 +1,25 @@
 # iOS_Calculator
 
-A simple calculator for iOS
+A simple calculator for iOS.
+
+A calculator made with Swift 2.0 in Xcode for iOS. Done as a project to explore mobile application development. Calculator works with multiple numbers and operations, decimal numbers, and squares. Another motivation for creating this is that I did not enjoy the default calculator provided on iOS. Calculator design was done in Sketch as well as in StoryBoard.
+
+**Features:**
+ An ANS key was added to recall the last answer. Order of precidence has been implimented. The calculator features a screen that displays what your calculating as you punch in the inputs and operations. You can also swipe up and down to change the colours of the operation buttons. 
+
+![CalcDisplay](http://imgur.com/5SRabqE.png)
+
+## Installation
+Mac:
+- Clone the repo
+- Open project in Xcode 7.0 or higher
+- Run
+
+iOS:
+- Connect device to Mac
+- Do above steps for Mac
+- Choose your device to run on in top left coner
+- Run
 
 ----
 (Updated Jan 1, 2016)
