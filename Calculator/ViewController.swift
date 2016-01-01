@@ -117,7 +117,6 @@ class ViewController: UIViewController {
         var colorList =
             [UIColor(red: 24/255, green: 194/255, blue: 255/255, alpha: 1.0),
             UIColor(red: 84/255, green: 234/255, blue: 102/255, alpha: 1.0),
-            UIColor(red: 158/255, green: 92/255, blue: 225/255, alpha: 1.0),
             UIColor(red: 251/255, green: 90/255, blue: 112/255, alpha: 1.0)]
 
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{

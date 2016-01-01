@@ -488,7 +488,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="answerLabel" destination="xmd-t7-NTa" id="NAE-TY-HzV"/>
-                        <outlet property="delete" destination="mnQ-pl-Pma" id="NZf-H6-uoe"/>
                         <outlet property="divison" destination="lLN-Pr-co6" id="SLX-Bz-C6O"/>
                         <outlet property="equal" destination="W6a-gM-eVc" id="AOP-xE-tyx"/>
                         <outlet property="minus" destination="6eI-pn-Bhx" id="uPW-gz-pvH"/>
