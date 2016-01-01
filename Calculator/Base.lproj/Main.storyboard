@@ -271,7 +271,7 @@
                                     <action selector="squareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chM-sB-leY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLN-Pr-co6" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLN-Pr-co6" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="279" y="192" width="96" height="95"/>
                                 <color key="backgroundColor" red="0.0" green="0.80552043332718437" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
@@ -298,7 +298,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQe-wM-ljW" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQe-wM-ljW" customClass="DesignableButton" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="186" y="192" width="93" height="95"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -488,6 +488,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="answerLabel" destination="xmd-t7-NTa" id="NAE-TY-HzV"/>
+                        <outlet property="delete" destination="mnQ-pl-Pma" id="NZf-H6-uoe"/>
                         <outlet property="divison" destination="lLN-Pr-co6" id="SLX-Bz-C6O"/>
                         <outlet property="equal" destination="W6a-gM-eVc" id="AOP-xE-tyx"/>
                         <outlet property="minus" destination="6eI-pn-Bhx" id="uPW-gz-pvH"/>

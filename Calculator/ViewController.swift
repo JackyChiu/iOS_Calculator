@@ -145,14 +145,14 @@ class ViewController: UIViewController {
     //Equations labels
     @IBOutlet weak var operationsLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
-    
+    //button objects
     @IBOutlet weak var divison: UIButton!
     @IBOutlet weak var multiplication: UIButton!
     @IBOutlet weak var minus: UIButton!
     @IBOutlet weak var plus: UIButton!
     @IBOutlet weak var equal: UIButton!
     
-    
+    //button actions
     //Number buttons
     @IBAction func decimalButton(sender: UIButton) {
         if operationsLabel.text! != ""{
