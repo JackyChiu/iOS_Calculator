@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     var operationsListWithoutEquals = ["+","⁃","x","/"]
     var higherPrecOperationsList = ["x","/"]
     var lowerPrecOperationsList = ["+","⁃","="]
+    var colorRoation:Int = 0
     
     func isInList(varible:String,list:[String])->Bool{
         for i in list{
@@ -111,9 +112,46 @@ class ViewController: UIViewController {
         return newString
     }
     
+    func respondToSwipeGesture(gesture: UIGestureRecognizer){
+        
+        var colorList =
+            [UIColor(red: 24/255, green: 194/255, blue: 255/255, alpha: 1.0),
+            UIColor(red: 84/255, green: 234/255, blue: 102/255, alpha: 1.0),
+            UIColor(red: 158/255, green: 92/255, blue: 225/255, alpha: 1.0),
+            UIColor(red: 251/255, green: 90/255, blue: 112/255, alpha: 1.0)]
+
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            if swipeGesture.direction == UISwipeGestureRecognizerDirection.Up{
+                colorRoation++
+                if colorRoation >= colorList.count{
+                    colorRoation = 0
+                }
+            }
+            else if swipeGesture.direction == UISwipeGestureRecognizerDirection.Down{
+                colorRoation--
+                if colorRoation < 0{
+                    colorRoation = colorList.count-1
+                }
+            }
+        }
+        
+        divison.backgroundColor = colorList[colorRoation]
+        multiplication.backgroundColor = colorList[colorRoation]
+        minus.backgroundColor = colorList[colorRoation]
+        plus.backgroundColor = colorList[colorRoation]
+        equal.backgroundColor = colorList[colorRoation]
+    }
+    
     //Equations labels
     @IBOutlet weak var operationsLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
+    
+    @IBOutlet weak var divison: UIButton!
+    @IBOutlet weak var multiplication: UIButton!
+    @IBOutlet weak var minus: UIButton!
+    @IBOutlet weak var plus: UIButton!
+    @IBOutlet weak var equal: UIButton!
+    
     
     //Number buttons
     @IBAction func decimalButton(sender: UIButton) {
@@ -400,6 +438,15 @@ class ViewController: UIViewController {
         
         answerLabel.text = String(finalAnswer)
         
+    }
+    override func viewDidLoad() {
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        self.view.addGestureRecognizer(swipeDown)
     }
 }
 
