@@ -26,14 +26,26 @@ extension String {
 
 class ViewController: UIViewController {
     
+    var finalAnswer: Float! = 0.0
     var answer: Float! = 0.0
-    var operationsList = ["=","+","-","x","/"]
-    var operationsListWithoutEquals = ["+","-","x","/"]
+    var operationsList = ["=","+","⁃","x","/"]
+    var operationsListWithoutEquals = ["+","⁃","x","/"]
+    var higherPrecOperationsList = ["x","/"]
+    var lowerPrecOperationsList = ["+","⁃"]
     
-    func isIn(varible:String,list: [String])->Bool{
+    func isInList(varible:String,list:[String])->Bool{
         for i in list{
             if varible == i{
                 return true
+            }
+        }
+        return false
+    }
+    
+    func isInString(varible:String, string:String)->Bool{
+        for i in 0..<string.length{
+            if varible == string[i]{
+            return true
             }
         }
         return false
@@ -48,9 +60,9 @@ class ViewController: UIViewController {
         }
     }
     
-    func endOfOperationsLine(operationsLine:String)->Bool{
+    func onlyEqualsLeft(operationsLine:String)->Bool{
         for i in 0..<operationsLine.length{
-            if isIn(String(operationsLine[i]), list: operationsListWithoutEquals){
+            if isInList(String(operationsLine[i]), list: operationsListWithoutEquals){
                 return false
             }
         }
@@ -61,66 +73,200 @@ class ViewController: UIViewController {
         return Float(operationsLine[0..<operationsLine.length])
     }
     
+    func endOfOperationLine(operationsLine:String)->Bool{
+        if operationsLine[operationsLine.length-1] == "="{
+         return true
+        }
+        return false
+    }
+    
+    func replaceSquare(operationsLine:String)->String{
+        var input:String!
+        var startPosition:Int! = 0
+        var newString:String! = operationsLine
+        
+        for i in 0..<operationsLine.length{
+            if isInList(String(operationsLine[i]), list: operationsListWithoutEquals){
+                startPosition = i+1
+            }
+            if operationsLine[i] == "^"{
+                input = operationsLine[startPosition..<i]
+                //print(input)
+                newString.replaceRange(newString.startIndex.advancedBy(i)..<newString.startIndex.advancedBy(i+2), with: "x"+input)
+                //print(newString)
+            }
+        }
+        return newString
+    }
+    
     //Equations labels
     @IBOutlet weak var operationsLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
     //Number buttons
-    @IBAction func clearButton(sender: UIButton) {
-        clearLabel()
+    @IBAction func decimalButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
+        operationsLabel.text! += "."
+    }
+
+    @IBAction func zeroButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
+        operationsLabel.text! += "0"
     }
  
     @IBAction func oneButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "1"
     }
 
     @IBAction func twoButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "2"
     }
     
     @IBAction func threeButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "3"
     }
     
     @IBAction func fourButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "4"
     }
     
     @IBAction func fiveButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "5"
     }
 
     @IBAction func sixButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "6"
     }
     
     @IBAction func sevenButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "7"
     }
     
     @IBAction func eightButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "8"
     }
     
     @IBAction func nineButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
         operationsLabel.text! += "9"
     }
     
     //Operations buttons
-    @IBAction func plusButton(sender: UIButton) {
-        operationsLabel.text! += "+"
+    @IBAction func clearButton(sender: UIButton) {
+        clearLabel()
     }
     
-    @IBAction func minusButton(sender: UIButton) {
+    @IBAction func negativeButton(sender: UIButton) {
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "-"
+        }
         operationsLabel.text! += "-"
     }
     
-    @IBAction func mutipleButton(sender: UIButton) {
-        operationsLabel.text! += "x"
+    @IBAction func answerButton(sender: UIButton) {
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
+        }
+        operationsLabel.text! += "ANS"
+    }
+
+    @IBAction func plusButton(sender: UIButton) {
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "+"
+        }
+        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            operationsLabel.text! += "+"
+        }
+
     }
     
+    @IBAction func minusButton(sender: UIButton) {
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "⁃"
+        }
+        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            operationsLabel.text! += "⁃"
+        }
+    }
+    
+    @IBAction func mutipleButton(sender: UIButton) {
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "x"
+        }
+        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            operationsLabel.text! += "x"
+        }    }
+    
     @IBAction func divisonButton(sender: UIButton) {
-        operationsLabel.text! += "/"
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "/"
+        }
+        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            operationsLabel.text! += "/"
+        }
+    }
+    
+    @IBAction func squareButton(sender: UIButton) {
+        if operationsLabel.text! == ""{
+            operationsLabel.text! += "^2"
+        }
+        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            operationsLabel.text! += "^2"
+        }
     }
     
 
@@ -136,11 +282,24 @@ class ViewController: UIViewController {
         operationsLabel.text! += "="
         operationsLine = operationsLabel.text!
         
-        while(endOfOperationsLine(operationsLine)==false){
+        //replacements in the string
+        operationsLine = replaceSquare(operationsLine)
+        operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
+        
+        //loop to read the string of operations
+        while(onlyEqualsLeft(operationsLine)==false){
+            
+            /*
+            for i in higherPrecOperationsList{
+                if isIn(higherPrecOperationsList[i]), list: List(operationsLine)){
+                    
+                }
+            }
+            */
         
             for i in 0..<operationsLine.length{
                 
-                if isIn(String(operationsLine[i]), list: operationsList){
+                if isInList(operationsLine[i], list: operationsList){
                     input1 = Float(operationsLine[0..<i])
                     operation = operationsLine[i]
                     operatorPosition = i + 1
@@ -153,7 +312,7 @@ class ViewController: UIViewController {
             
             for j in operatorPosition..<operationsLine.length{
                 
-                if isIn(String(operationsLine[j]), list: operationsList){
+                if isInList(operationsLine[j], list: operationsList){
                     input2 = Float(operationsLine[operatorPosition..<j])
                     endPosition = j
                     //print(input2)
@@ -168,7 +327,7 @@ class ViewController: UIViewController {
                 case "+":
                 answer = input1 + input2
                 
-                case "-":
+                case "⁃":
                 answer = input1 - input2
                 
                 case "x":
@@ -188,10 +347,10 @@ class ViewController: UIViewController {
                 
         }
         
-        answer = Float(operationsLine[0..<operationsLine.length-1])
+        finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
         //print(answer)
         
-        answerLabel.text = String(answer)
+        answerLabel.text = String(finalAnswer)
         
     }
     override func viewDidLoad() {

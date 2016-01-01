@@ -3,6 +3,9 @@
 A simple calculator for iOS
 
 ----
+(Updated Dec 31, 2015)
+ANS key & square operator work now. Replaced the square root button with a button for negative numbers.
+
 (Update Dec 27, 2015)
 Calculator works with multiple operations and decimal numbers.
 
