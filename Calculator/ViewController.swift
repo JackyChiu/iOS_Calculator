@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     var operationsList = ["=","+","⁃","x","/"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
     var higherPrecOperationsList = ["x","/"]
-    var lowerPrecOperationsList = ["+","⁃"]
+    var lowerPrecOperationsList = ["+","⁃","="]
     
     func isInList(varible:String,list:[String])->Bool{
         for i in list{
@@ -42,10 +42,12 @@ class ViewController: UIViewController {
         return false
     }
     
-    func isInString(varible:String, string:String)->Bool{
-        for i in 0..<string.length{
-            if varible == string[i]{
-            return true
+    func higherPrecOccurance(varible:String, list:[String])->Bool{
+        for i in 0..<varible.length{
+            for j in list{
+                if varible[i] == j{
+                    return true
+                }
             }
         }
         return false
@@ -209,8 +211,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func negativeButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
-            operationsLabel.text! += "-"
+        if operationsLabel.text! != ""{
+            if endOfOperationLine(operationsLabel.text!) == true{
+                clearLabel()
+            }
         }
         operationsLabel.text! += "-"
     }
@@ -276,6 +280,7 @@ class ViewController: UIViewController {
         var input1:Float!
         var input2:Float!
         var operatorPosition:Int!
+        var startPosition:Int!
         var endPosition:Int!
         var operation:Character = "A"
         
@@ -289,36 +294,67 @@ class ViewController: UIViewController {
         //loop to read the string of operations
         while(onlyEqualsLeft(operationsLine)==false){
             
-            /*
-            for i in higherPrecOperationsList{
-                if isIn(higherPrecOperationsList[i]), list: List(operationsLine)){
+            startPosition = 0
+            
+            //For cases where a operation with higher precedence occures as a later operation
+            if higherPrecOccurance(operationsLine, list: higherPrecOperationsList){
+                
+                for i in 0..<operationsLine.length{
+                    
+                    if isInList(operationsLine[i], list: lowerPrecOperationsList){
+                        startPosition = i + 1
+                    }
+                    if isInList(operationsLine[i], list: higherPrecOperationsList){
+                        input1 = Float(operationsLine[startPosition..<i])
+                        operation = operationsLine[i]
+                        operatorPosition = i + 1
+                        //print(operatorPosition)
+                        //print(operation)
+                        //print(input1)
+                        break
+                    }
                     
                 }
-            }
-            */
-        
-            for i in 0..<operationsLine.length{
                 
-                if isInList(operationsLine[i], list: operationsList){
-                    input1 = Float(operationsLine[0..<i])
-                    operation = operationsLine[i]
-                    operatorPosition = i + 1
-                    //print(operatorPosition)
-                    //print(operation)
-                    //print(input1)
-                    break
+                for j in operatorPosition..<operationsLine.length{
+                    
+                    if isInList(operationsLine[j], list: operationsList){
+                        input2 = Float(operationsLine[operatorPosition..<j])
+                        endPosition = j
+                        //print(input2)
+                        break
+                    }
                 }
+
+
             }
             
-            for j in operatorPosition..<operationsLine.length{
+            // Regular case, does math left to right
+            else{
+        
+                for i in 0..<operationsLine.length{
+                    
+                    if isInList(operationsLine[i], list: operationsList){
+                        input1 = Float(operationsLine[0..<i])
+                        operation = operationsLine[i]
+                        operatorPosition = i + 1
+                        //print(operatorPosition)
+                        //print(operation)
+                        //print(input1)
+                        break
+                    }
+                }
                 
-                if isInList(operationsLine[j], list: operationsList){
-                    input2 = Float(operationsLine[operatorPosition..<j])
-                    endPosition = j
-                    //print(input2)
-                    //print(endPosition)
-                    //print(operation)
-                    break
+                for j in operatorPosition..<operationsLine.length{
+                    
+                    if isInList(operationsLine[j], list: operationsList){
+                        input2 = Float(operationsLine[operatorPosition..<j])
+                        endPosition = j
+                        //print(input2)
+                        //print(endPosition)
+                        //print(operation)
+                        break
+                    }
                 }
             }
             
@@ -341,7 +377,7 @@ class ViewController: UIViewController {
                 
             }
             
-            operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[0..<endPosition], withString: String(answer))
+            operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
             
             //print(operationsLine)
                 
@@ -352,10 +388,6 @@ class ViewController: UIViewController {
         
         answerLabel.text = String(finalAnswer)
         
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 }
 

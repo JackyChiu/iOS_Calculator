@@ -3,6 +3,9 @@
 A simple calculator for iOS
 
 ----
+(Updated Jan 1, 2016)
+Calculator can now recognize order of precedence with operators.
+
 (Updated Dec 31, 2015)
 ANS key & square operator work now. Replaced the square root button with a button for negative numbers.
 
