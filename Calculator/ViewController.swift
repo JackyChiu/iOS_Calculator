@@ -62,6 +62,16 @@ class ViewController: UIViewController {
         }
     }
     
+    func deleteLastEntry() {
+        if operationsLabel.text! != ""{
+            operationsLabel.text!.removeAtIndex(operationsLabel.text!.endIndex.predecessor())
+        }
+    }
+    
+    func longPressed(sender:UILongPressGestureRecognizer){
+        clearLabel()
+    }
+    
     func onlyEqualsLeft(operationsLine:String)->Bool{
         for i in 0..<operationsLine.length{
             if isInList(String(operationsLine[i]), list: operationsListWithoutEquals){
@@ -206,8 +216,11 @@ class ViewController: UIViewController {
     }
     
     //Operations buttons
-    @IBAction func clearButton(sender: UIButton) {
-        clearLabel()
+    @IBAction func deleteButton(sender: UIButton) {
+        deleteLastEntry()
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
+        self.view.addGestureRecognizer(longPressRecognizer)
+
     }
     
     @IBAction func negativeButton(sender: UIButton) {
@@ -265,11 +278,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func squareButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
-            operationsLabel.text! += "^2"
-        }
-        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-            operationsLabel.text! += "^2"
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+                operationsLabel.text! += "^2"
+            }
         }
     }
     
