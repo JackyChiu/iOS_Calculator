@@ -279,38 +279,35 @@ class ViewController: UIViewController {
     }
 
     @IBAction func plusButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
-            operationsLabel.text! += "+"
-        }
-        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-            operationsLabel.text! += "+"
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+                operationsLabel.text! += "+"
+            }
         }
 
     }
     
     @IBAction func minusButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
-            operationsLabel.text! += "⁃"
-        }
-        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-            operationsLabel.text! += "⁃"
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+                operationsLabel.text! += "⁃"
+            }
         }
     }
     
     @IBAction func mutipleButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
             operationsLabel.text! += "x"
+            }
         }
-        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-            operationsLabel.text! += "x"
-        }    }
+    }
     
     @IBAction func divisonButton(sender: UIButton) {
-        if operationsLabel.text! == ""{
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
             operationsLabel.text! += "/"
-        }
-        else if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-            operationsLabel.text! += "/"
+            }
         }
     }
     
@@ -333,109 +330,115 @@ class ViewController: UIViewController {
         var endPosition:Int!
         var operation:Character = "A"
         
-        operationsLabel.text! += "="
-        operationsLine = operationsLabel.text!
-        
-        //replacements in the string
-        operationsLine = replaceSquare(operationsLine)
-        operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
-        
-        //loop to read the string of operations
-        while(onlyEqualsLeft(operationsLine)==false){
+        if operationsLabel.text! != ""{
+            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+                operationsLabel.text! += "="
             
-            startPosition = 0
-            
-            //For cases where a operation with higher precedence occures as a later operation
-            if higherPrecOccurance(operationsLine, list: higherPrecOperationsList){
+    
+                operationsLine = operationsLabel.text!
                 
-                for i in 0..<operationsLine.length{
-                    
-                    if isInList(operationsLine[i], list: lowerPrecOperationsList){
-                        startPosition = i + 1
-                    }
-                    if isInList(operationsLine[i], list: higherPrecOperationsList){
-                        input1 = Float(operationsLine[startPosition..<i])
-                        operation = operationsLine[i]
-                        operatorPosition = i + 1
-                        //print(operatorPosition)
-                        //print(operation)
-                        //print(input1)
-                        break
-                    }
-                    
-                }
+                //replacements in the string
+                operationsLine = replaceSquare(operationsLine)
+                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
                 
-                for j in operatorPosition..<operationsLine.length{
+                //loop to read the string of operations
+                while(onlyEqualsLeft(operationsLine)==false){
                     
-                    if isInList(operationsLine[j], list: operationsList){
-                        input2 = Float(operationsLine[operatorPosition..<j])
-                        endPosition = j
-                        //print(input2)
-                        break
-                    }
-                }
+                    startPosition = 0
+                    
+                    //For cases where a operation with higher precedence occures as a later operation
+                    if higherPrecOccurance(operationsLine, list: higherPrecOperationsList){
+                        
+                        for i in 0..<operationsLine.length{
+                            
+                            if isInList(operationsLine[i], list: lowerPrecOperationsList){
+                                startPosition = i + 1
+                            }
+                            if isInList(operationsLine[i], list: higherPrecOperationsList){
+                                input1 = Float(operationsLine[startPosition..<i])
+                                operation = operationsLine[i]
+                                operatorPosition = i + 1
+                                //print(operatorPosition)
+                                //print(operation)
+                                //print(input1)
+                                break
+                            }
+                            
+                        }
+                        
+                        for j in operatorPosition..<operationsLine.length{
+                            
+                            if isInList(operationsLine[j], list: operationsList){
+                                input2 = Float(operationsLine[operatorPosition..<j])
+                                endPosition = j
+                                //print(input2)
+                                break
+                            }
+                        }
 
 
-            }
-            
-            // Regular case, does math left to right
-            else{
-        
-                for i in 0..<operationsLine.length{
-                    
-                    if isInList(operationsLine[i], list: operationsList){
-                        input1 = Float(operationsLine[0..<i])
-                        operation = operationsLine[i]
-                        operatorPosition = i + 1
-                        //print(operatorPosition)
-                        //print(operation)
-                        //print(input1)
-                        break
                     }
+                    
+                    // Regular case, does math left to right
+                    else{
+                
+                        for i in 0..<operationsLine.length{
+                            
+                            if isInList(operationsLine[i], list: operationsList){
+                                input1 = Float(operationsLine[0..<i])
+                                operation = operationsLine[i]
+                                operatorPosition = i + 1
+                                //print(operatorPosition)
+                                //print(operation)
+                                //print(input1)
+                                break
+                            }
+                        }
+                        
+                        for j in operatorPosition..<operationsLine.length{
+                            
+                            if isInList(operationsLine[j], list: operationsList){
+                                input2 = Float(operationsLine[operatorPosition..<j])
+                                endPosition = j
+                                //print(input2)
+                                //print(endPosition)
+                                //print(operation)
+                                break
+                            }
+                        }
+                    }
+                    
+                    switch operation{
+                        
+                        case "+":
+                        answer = input1 + input2
+                        
+                        case "⁃":
+                        answer = input1 - input2
+                        
+                        case "x":
+                        answer = input1 * input2
+                        
+                        case "/":
+                        answer = input1 / input2
+                        
+                        default:
+                        answer = nil
+                        
+                    }
+                    
+                    operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
+                    
+                    //print(operationsLine)
+                        
                 }
                 
-                for j in operatorPosition..<operationsLine.length{
-                    
-                    if isInList(operationsLine[j], list: operationsList){
-                        input2 = Float(operationsLine[operatorPosition..<j])
-                        endPosition = j
-                        //print(input2)
-                        //print(endPosition)
-                        //print(operation)
-                        break
-                    }
-                }
+                finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
+                //print(answer)
+                
+                answerLabel.text = String(finalAnswer)
             }
-            
-            switch operation{
-                
-                case "+":
-                answer = input1 + input2
-                
-                case "⁃":
-                answer = input1 - input2
-                
-                case "x":
-                answer = input1 * input2
-                
-                case "/":
-                answer = input1 / input2
-                
-                default:
-                answer = nil
-                
-            }
-            
-            operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
-            
-            //print(operationsLine)
-                
         }
-        
-        finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
-        //print(answer)
-        
-        answerLabel.text = String(finalAnswer)
         
     }
     override func viewDidLoad() {
