@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     var numbersList = ["1","2","3","4","5","6","7","8","9"]
     var operationsList = ["=","+","⁃","x","/","^"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
+    var operationsListWithoutEqualsPlusEx = ["+","⁃","x","/","^"]
     var higherPrecOperationsList = ["x","/"]
     var lowerPrecOperationsList = ["+","⁃","="]
     var colorRoation:Int = 0
@@ -45,9 +46,9 @@ class ViewController: UIViewController {
     }
     
     func listIsInWholeString(varible:String, list:[String])->Bool{
-        for i in 0..<varible.length{
+        for i in varible.characters{
             for j in list{
-                if varible[i] == j{
+                if String(i) == j{
                     return true
                 }
             }
@@ -76,15 +77,11 @@ class ViewController: UIViewController {
     
     func onlyEqualsLeft(operationsLine:String)->Bool{
         for i in 0..<operationsLine.length{
-            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEquals){
+            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEqualsPlusEx){
                 return false
             }
         }
         return true
-    }
-    
-    func getAnswer(operationsLine:String)->Float!{
-        return Float(operationsLine[0..<operationsLine.length])
     }
     
     func endOfOperationLine(operationsLine:String)->Bool{
@@ -92,47 +89,6 @@ class ViewController: UIViewController {
          return true
         }
         return false
-    }
-    
-    func replaceSquare(var operationsLine:String)->String{
-        var input1:Float!
-        var input2:Float!
-        var operatorPosition:Int!
-        var startPosition:Int! = 0
-        var endPosition:Int!
-
-        while(listIsInWholeString(operationsLine, list: ["^"])){
-        
-        for i in 0..<operationsLine.length{
-            
-            if listIsInPartString(operationsLine[i], list: operationsListWithoutEquals){
-                startPosition = i + 1
-            }
-            if operationsLine[i] == "^"{
-                input1 = Float(operationsLine[startPosition..<i])
-                operatorPosition = i + 1
-                //print(operatorPosition)
-                //print(operation)
-                //print(input1)
-                break
-            }
-            
-        }
-        
-        for j in operatorPosition..<operationsLine.length{
-            
-            if listIsInPartString(operationsLine[j], list: operationsList){
-                input2 = Float(operationsLine[operatorPosition..<j])
-                endPosition = j
-                //print(input2)
-                break
-            }
-        }
-        answer = pow(input1,input2)
-        operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
-        }
-        
-        return operationsLine
     }
 
     func respondToSwipeGesture(gesture: UIGestureRecognizer){
@@ -376,6 +332,9 @@ class ViewController: UIViewController {
         var startPosition:Int!
         var endPosition:Int!
         var operation:Character = "A"
+        var listToBeNotIn:[String] = []
+        var listToBeIn:[String] = []
+        var eCase: Bool = false
         
         if operationsLabel.text! != ""{
             if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
@@ -383,79 +342,67 @@ class ViewController: UIViewController {
             
     
                 operationsLine = operationsLabel.text!
-                
                 //replacements in the string
-                operationsLine = replaceSquare(operationsLine)
                 operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
                 
                 //loop to read the string of operations
                 while(onlyEqualsLeft(operationsLine)==false){
                     
-                    if(listIsInWholeString(operationsLine, list: ["e"])){
-                        break
-                    }
-                    
+                    eCase = false
                     startPosition = 0
                     
-                    //For cases where a operation with higher precedence occures as a later operation
-                    if listIsInWholeString(operationsLine, list: higherPrecOperationsList){
-                        
-                        for i in 0..<operationsLine.length{
-                            
-                            if listIsInPartString(operationsLine[i], list: lowerPrecOperationsList){
-                                startPosition = i + 1
-                            }
-                            if listIsInPartString(operationsLine[i], list: higherPrecOperationsList){
-                                input1 = Float(operationsLine[startPosition..<i])
-                                operation = operationsLine[i]
-                                operatorPosition = i + 1
-                                //print(operatorPosition)
-                                //print(operation)
-                                //print(input1)
-                                break
-                            }
-                            
-                        }
-                        
-                        for j in operatorPosition..<operationsLine.length{
-                            
-                            if listIsInPartString(operationsLine[j], list: operationsList){
-                                input2 = Float(operationsLine[operatorPosition..<j])
-                                endPosition = j
-                                //print(input2)
-                                break
-                            }
-                        }
-
-
+                    //Cases with large numbers
+                    if listIsInWholeString(operationsLine, list:["e"]){
+                        listToBeNotIn = operationsListWithoutEquals
+                        listToBeIn = ["e"]
+                        eCase = true
+                        answerLabel.text = operationsLine[0..<operationsLine.length-1]
                     }
                     
-                    // Regular case, does math left to right
+                    //Cases with expoentals
+                    else if listIsInWholeString(operationsLine, list:["^"]){
+                        listToBeNotIn = operationsListWithoutEquals
+                        listToBeIn = ["^"]
+    
+                    }
+                    //Cases with higher precedence
+                    else if listIsInWholeString(operationsLine, list: higherPrecOperationsList){
+                        listToBeNotIn = lowerPrecOperationsList
+                        listToBeIn = higherPrecOperationsList
+                    }
+                        
                     else{
-                
-                        for i in 0..<operationsLine.length{
-                            
-                            if listIsInPartString(operationsLine[i], list: operationsList){
-                                input1 = Float(operationsLine[0..<i])
-                                operation = operationsLine[i]
-                                operatorPosition = i + 1
-                                //print(operatorPosition)
-                                //print(operation)
-                                //print(input1)
-                                break
+                        listToBeNotIn = [""]
+                        listToBeIn = lowerPrecOperationsList
+                    }
+                    
+                    //Main 2 loops that determine inputs
+                    for i in 0..<operationsLine.length{
+                        if listIsInPartString(operationsLine[i], list: listToBeNotIn){
+                            startPosition = i + 1
+                        }
+                        if listIsInPartString(operationsLine[i], list: listToBeIn){
+                            input1 = Float(operationsLine[startPosition..<i])
+                            //print(input1)
+                            operation = operationsLine[i]
+                            //print(operation)
+                            if eCase{
+                                operatorPosition = i + 2
                             }
+                            else{
+                                operatorPosition = i + 1
+                            }
+                            break
                         }
                         
-                        for j in operatorPosition..<operationsLine.length{
-                            
-                            if listIsInPartString(operationsLine[j], list: operationsList){
-                                input2 = Float(operationsLine[operatorPosition..<j])
-                                endPosition = j
-                                //print(input2)
-                                //print(endPosition)
-                                //print(operation)
-                                break
-                            }
+                    }
+                    
+                    for j in operatorPosition..<operationsLine.length{
+                        if listIsInPartString(operationsLine[j], list: operationsList){
+                            input2 = Float(operationsLine[operatorPosition..<j])
+                            //print(input2)
+                            endPosition = j
+                            break
                         }
                     }
                     
@@ -473,56 +420,42 @@ class ViewController: UIViewController {
                         case "/":
                         answer = input1 / input2
                         
+                        case "^":
+                        answer = pow(input1,input2)
+                        
+                        case "e":
+                        answer = input1 * (pow(10, input2))
+                        
                         default:
                         answer = nil
                         
                     }
-                    
+                    //print(answer)
                     operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
                     
                     //print(operationsLine)
+                    
+                    if eCase{
+                        break
+                    }
                         
                 }
-                if(listIsInWholeString(operationsLine, list: ["e"])){
-                    
-                    answerLabel.text = operationsLine[0..<operationsLine.length-1]
-                    
-                    for i in 0..<operationsLine.length{
-                        
-                        if operationsLine[i] == "e"{
-                            input1 = Float(operationsLine[0..<i])
-                            operatorPosition = i + 2
-                            //print(operatorPosition)
-                            //print(operation)
-                            //print(input1)
-                            break
-                        }
-                    }
-                    
-                    for j in operatorPosition..<operationsLine.length{
-                        
-                        if listIsInPartString(operationsLine[j], list: operationsList){
-                            input2 = Float(operationsLine[operatorPosition..<j])
-                            endPosition = j
-                            //print(input2)
-                            //print(endPosition)
-                            //print(operation)
-                            break
-                        }
-                    }
-                    
-                    finalAnswer = input1 * (pow(10, input2))
-                    //print(finalAnswer)
-                
+
+                if eCase{
+                    finalAnswer = answer
+                    //print(answer)
                 }
                 else{
                     finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
                     //print(answer)
-                    
                     answerLabel.text = String(finalAnswer)
                 }
+
+
             }
+
         }
+
         
     }
     override func viewDidLoad() {
