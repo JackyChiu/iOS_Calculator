@@ -22,6 +22,9 @@ iOS:
 - Run
 
 ----
+(Updated Jan 4, 2016)
+When pressing an operator button after previous operations have been evaluated, it continues by replacing the previous operations with an ANS key. Fixed cases with large numbers that could possibly break the build. Changed squared button into an expont button.
+
 (Updated Jan 1, 2016)
 Calculator can now recognize order of precedence with operators. Clear button is now a delete button, when long pressed will clear. Swiping the calculator up and down will change the colour of it.
 

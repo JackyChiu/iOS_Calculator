@@ -28,13 +28,14 @@ class ViewController: UIViewController {
     
     var finalAnswer: Float! = 0.0
     var answer: Float! = 0.0
-    var operationsList = ["=","+","⁃","x","/"]
+    var numbersList = ["1","2","3","4","5","6","7","8","9"]
+    var operationsList = ["=","+","⁃","x","/","^"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
     var higherPrecOperationsList = ["x","/"]
     var lowerPrecOperationsList = ["+","⁃","="]
     var colorRoation:Int = 0
     
-    func isInList(varible:String,list:[String])->Bool{
+    func listIsInPartString(varible:String,list:[String])->Bool{
         for i in list{
             if varible == i{
                 return true
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
         return false
     }
     
-    func higherPrecOccurance(varible:String, list:[String])->Bool{
+    func listIsInWholeString(varible:String, list:[String])->Bool{
         for i in 0..<varible.length{
             for j in list{
                 if varible[i] == j{
@@ -75,7 +76,7 @@ class ViewController: UIViewController {
     
     func onlyEqualsLeft(operationsLine:String)->Bool{
         for i in 0..<operationsLine.length{
-            if isInList(String(operationsLine[i]), list: operationsListWithoutEquals){
+            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEquals){
                 return false
             }
         }
@@ -93,25 +94,47 @@ class ViewController: UIViewController {
         return false
     }
     
-    func replaceSquare(operationsLine:String)->String{
-        var input:String!
+    func replaceSquare(var operationsLine:String)->String{
+        var input1:Float!
+        var input2:Float!
+        var operatorPosition:Int!
         var startPosition:Int! = 0
-        var newString:String! = operationsLine
+        var endPosition:Int!
+
+        while(listIsInWholeString(operationsLine, list: ["^"])){
         
         for i in 0..<operationsLine.length{
-            if isInList(String(operationsLine[i]), list: operationsListWithoutEquals){
-                startPosition = i+1
+            
+            if listIsInPartString(operationsLine[i], list: operationsListWithoutEquals){
+                startPosition = i + 1
             }
             if operationsLine[i] == "^"{
-                input = operationsLine[startPosition..<i]
-                //print(input)
-                newString.replaceRange(newString.startIndex.advancedBy(i)..<newString.startIndex.advancedBy(i+2), with: "x"+input)
-                //print(newString)
+                input1 = Float(operationsLine[startPosition..<i])
+                operatorPosition = i + 1
+                //print(operatorPosition)
+                //print(operation)
+                //print(input1)
+                break
+            }
+            
+        }
+        
+        for j in operatorPosition..<operationsLine.length{
+            
+            if listIsInPartString(operationsLine[j], list: operationsList){
+                input2 = Float(operationsLine[operatorPosition..<j])
+                endPosition = j
+                //print(input2)
+                break
             }
         }
-        return newString
+        answer = pow(input1,input2)
+        operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
+        }
+        
+        return operationsLine
     }
-    
+
     func respondToSwipeGesture(gesture: UIGestureRecognizer){
         
         var colorList =
@@ -265,8 +288,10 @@ class ViewController: UIViewController {
             if endOfOperationLine(operationsLabel.text!) == true{
                 clearLabel()
             }
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
+                operationsLabel.text! += "-"
+            }
         }
-        operationsLabel.text! += "-"
     }
     
     @IBAction func answerButton(sender: UIButton) {
@@ -280,8 +305,12 @@ class ViewController: UIViewController {
 
     @IBAction func plusButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
                 operationsLabel.text! += "+"
+            }
+            if endOfOperationLine(operationsLabel.text!){
+                clearLabel()
+                operationsLabel.text! += "ANS+"
             }
         }
 
@@ -289,32 +318,50 @@ class ViewController: UIViewController {
     
     @IBAction func minusButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
                 operationsLabel.text! += "⁃"
+                
             }
+            if endOfOperationLine(operationsLabel.text!){
+                clearLabel()
+                operationsLabel.text! += "ANS⁃"
+            }
+
         }
     }
     
     @IBAction func mutipleButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
             operationsLabel.text! += "x"
+            }
+            if endOfOperationLine(operationsLabel.text!){
+                clearLabel()
+                operationsLabel.text! += "ANSx"
             }
         }
     }
     
     @IBAction func divisonButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
             operationsLabel.text! += "/"
+            }
+            if endOfOperationLine(operationsLabel.text!){
+                clearLabel()
+                operationsLabel.text! += "ANS/"
             }
         }
     }
     
     @IBAction func squareButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-                operationsLabel.text! += "^2"
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+                operationsLabel.text! += "^"
+            }
+            if endOfOperationLine(operationsLabel.text!){
+                clearLabel()
+                operationsLabel.text! += "ANS^"
             }
         }
     }
@@ -331,7 +378,7 @@ class ViewController: UIViewController {
         var operation:Character = "A"
         
         if operationsLabel.text! != ""{
-            if isInList(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
                 operationsLabel.text! += "="
             
     
@@ -344,17 +391,21 @@ class ViewController: UIViewController {
                 //loop to read the string of operations
                 while(onlyEqualsLeft(operationsLine)==false){
                     
+                    if(listIsInWholeString(operationsLine, list: ["e"])){
+                        break
+                    }
+                    
                     startPosition = 0
                     
                     //For cases where a operation with higher precedence occures as a later operation
-                    if higherPrecOccurance(operationsLine, list: higherPrecOperationsList){
+                    if listIsInWholeString(operationsLine, list: higherPrecOperationsList){
                         
                         for i in 0..<operationsLine.length{
                             
-                            if isInList(operationsLine[i], list: lowerPrecOperationsList){
+                            if listIsInPartString(operationsLine[i], list: lowerPrecOperationsList){
                                 startPosition = i + 1
                             }
-                            if isInList(operationsLine[i], list: higherPrecOperationsList){
+                            if listIsInPartString(operationsLine[i], list: higherPrecOperationsList){
                                 input1 = Float(operationsLine[startPosition..<i])
                                 operation = operationsLine[i]
                                 operatorPosition = i + 1
@@ -368,7 +419,7 @@ class ViewController: UIViewController {
                         
                         for j in operatorPosition..<operationsLine.length{
                             
-                            if isInList(operationsLine[j], list: operationsList){
+                            if listIsInPartString(operationsLine[j], list: operationsList){
                                 input2 = Float(operationsLine[operatorPosition..<j])
                                 endPosition = j
                                 //print(input2)
@@ -384,7 +435,7 @@ class ViewController: UIViewController {
                 
                         for i in 0..<operationsLine.length{
                             
-                            if isInList(operationsLine[i], list: operationsList){
+                            if listIsInPartString(operationsLine[i], list: operationsList){
                                 input1 = Float(operationsLine[0..<i])
                                 operation = operationsLine[i]
                                 operatorPosition = i + 1
@@ -397,7 +448,7 @@ class ViewController: UIViewController {
                         
                         for j in operatorPosition..<operationsLine.length{
                             
-                            if isInList(operationsLine[j], list: operationsList){
+                            if listIsInPartString(operationsLine[j], list: operationsList){
                                 input2 = Float(operationsLine[operatorPosition..<j])
                                 endPosition = j
                                 //print(input2)
@@ -432,11 +483,44 @@ class ViewController: UIViewController {
                     //print(operationsLine)
                         
                 }
+                if(listIsInWholeString(operationsLine, list: ["e"])){
+                    
+                    answerLabel.text = operationsLine[0..<operationsLine.length-1]
+                    
+                    for i in 0..<operationsLine.length{
+                        
+                        if operationsLine[i] == "e"{
+                            input1 = Float(operationsLine[0..<i])
+                            operatorPosition = i + 2
+                            //print(operatorPosition)
+                            //print(operation)
+                            //print(input1)
+                            break
+                        }
+                    }
+                    
+                    for j in operatorPosition..<operationsLine.length{
+                        
+                        if listIsInPartString(operationsLine[j], list: operationsList){
+                            input2 = Float(operationsLine[operatorPosition..<j])
+                            endPosition = j
+                            //print(input2)
+                            //print(endPosition)
+                            //print(operation)
+                            break
+                        }
+                    }
+                    
+                    finalAnswer = input1 * (pow(10, input2))
+                    //print(finalAnswer)
                 
-                finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
-                //print(answer)
-                
-                answerLabel.text = String(finalAnswer)
+                }
+                else{
+                    finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
+                    //print(answer)
+                    
+                    answerLabel.text = String(finalAnswer)
+                }
             }
         }
         
