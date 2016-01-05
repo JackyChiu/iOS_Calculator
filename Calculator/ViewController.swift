@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     var finalAnswer: Float! = 0.0
     var answer: Float! = 0.0
-    var numbersList = ["1","2","3","4","5","6","7","8","9"]
+    var numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
     var operationsList = ["=","+","⁃","x","/","^"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
     var operationsListWithoutEqualsPlusEx = ["+","⁃","x","/","^"]
@@ -243,8 +243,9 @@ class ViewController: UIViewController {
         if operationsLabel.text! != ""{
             if endOfOperationLine(operationsLabel.text!) == true{
                 clearLabel()
+                operationsLabel.text! += "-"
             }
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
+            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
                 operationsLabel.text! += "-"
             }
         }
@@ -254,9 +255,13 @@ class ViewController: UIViewController {
         if operationsLabel.text! != ""{
             if endOfOperationLine(operationsLabel.text!) == true{
                 clearLabel()
+                operationsLabel.text! += "ANS"
             }
+            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
+                operationsLabel.text! += "ANS"
+            }
+
         }
-        operationsLabel.text! += "ANS"
     }
 
     @IBAction func plusButton(sender: UIButton) {
