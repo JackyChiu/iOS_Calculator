@@ -22,6 +22,9 @@ iOS:
 - Run
 
 ----
+(Updated Jan 5, 2015)
+Operations with large number now work smoothly.
+
 (Updated Jan 4, 2016)
 When pressing an operator button after previous operations have been evaluated, it continues by replacing the previous operations with an ANS key. Fixed cases with large numbers that could possibly break the build. Changed squared button into an expont button.
 

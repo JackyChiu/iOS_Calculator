@@ -334,7 +334,6 @@ class ViewController: UIViewController {
         var operation:Character = "A"
         var listToBeNotIn:[String] = []
         var listToBeIn:[String] = []
-        var eCase: Bool = false
         
         if operationsLabel.text! != ""{
             if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
@@ -344,23 +343,16 @@ class ViewController: UIViewController {
                 operationsLine = operationsLabel.text!
                 //replacements in the string
                 operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
-                
+                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("e+", withString: String("e"))
+
                 //loop to read the string of operations
                 while(onlyEqualsLeft(operationsLine)==false){
                     
-                    eCase = false
+                    //eCase = false
                     startPosition = 0
-                    
-                    //Cases with large numbers
-                    if listIsInWholeString(operationsLine, list:["e"]){
-                        listToBeNotIn = operationsListWithoutEquals
-                        listToBeIn = ["e"]
-                        eCase = true
-                        answerLabel.text = operationsLine[0..<operationsLine.length-1]
-                    }
-                    
+                
                     //Cases with expoentals
-                    else if listIsInWholeString(operationsLine, list:["^"]){
+                    if listIsInWholeString(operationsLine, list:["^"]){
                         listToBeNotIn = operationsListWithoutEquals
                         listToBeIn = ["^"]
     
@@ -386,12 +378,9 @@ class ViewController: UIViewController {
                             //print(input1)
                             operation = operationsLine[i]
                             //print(operation)
-                            if eCase{
-                                operatorPosition = i + 2
-                            }
-                            else{
+                    
                                 operatorPosition = i + 1
-                            }
+                            
                             break
                         }
                         
@@ -423,29 +412,17 @@ class ViewController: UIViewController {
                         case "^":
                         answer = pow(input1,input2)
                         
-                        case "e":
-                        answer = input1 * (pow(10, input2))
-                        
                         default:
                         answer = nil
                         
                     }
                     //print(answer)
                     operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
-                    
+                    operationsLine = operationsLine.stringByReplacingOccurrencesOfString("e+", withString: String("e"))
                     //print(operationsLine)
                     
-                    if eCase{
-                        break
-                    }
-                        
                 }
-
-                if eCase{
-                    finalAnswer = answer
-                    //print(answer)
-                }
-                else{
+                
                     finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
                     //print(answer)
                     answerLabel.text = String(finalAnswer)
@@ -456,8 +433,6 @@ class ViewController: UIViewController {
 
         }
 
-        
-    }
     override func viewDidLoad() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
