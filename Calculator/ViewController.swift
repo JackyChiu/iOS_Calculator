@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     var finalAnswer: Float! = 0.0
     var answer: Float! = 0.0
     var numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
+    var numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
     var operationsList = ["=","+","⁃","x","/","^"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
     var operationsListWithoutEqualsPlusEx = ["+","⁃","x","/","^"]
@@ -245,9 +246,12 @@ class ViewController: UIViewController {
                 clearLabel()
                 operationsLabel.text! += "-"
             }
-            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
+            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersListWithNegative) == false{
                 operationsLabel.text! += "-"
             }
+        }
+        else{
+            operationsLabel.text! += "-"
         }
     }
     
@@ -349,6 +353,7 @@ class ViewController: UIViewController {
                 //replacements in the string
                 operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
                 operationsLine = operationsLine.stringByReplacingOccurrencesOfString("e+", withString: String("e"))
+                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("--", withString: String(""))
 
                 //loop to read the string of operations
                 while(onlyEqualsLeft(operationsLine)==false){
