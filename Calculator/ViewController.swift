@@ -31,8 +31,9 @@ class ViewController: UIViewController {
     var numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
     var numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
     var operationsList = ["=","+","⁃","x","/","^"]
+    var operationsListWithNegative = ["=","+","⁃","x","/","^","-"]
     var operationsListWithoutEquals = ["+","⁃","x","/"]
-    var operationsListWithoutEqualsPlusEx = ["+","⁃","x","/","^"]
+    var operationsListWithoutEqualsWithExponent = ["+","⁃","x","/","^"]
     var higherPrecOperationsList = ["x","/"]
     var lowerPrecOperationsList = ["+","⁃","="]
     var colorRoation:Int = 0
@@ -78,7 +79,7 @@ class ViewController: UIViewController {
     
     func onlyEqualsLeft(operationsLine:String)->Bool{
         for i in 0..<operationsLine.length{
-            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEqualsPlusEx){
+            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEqualsWithExponent){
                 return false
             }
         }
@@ -235,9 +236,6 @@ class ViewController: UIViewController {
     //Operations buttons
     @IBAction func deleteButton(sender: UIButton) {
         deleteLastEntry()
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
-        self.view.addGestureRecognizer(longPressRecognizer)
-
     }
     
     @IBAction func negativeButton(sender: UIButton) {
@@ -266,11 +264,14 @@ class ViewController: UIViewController {
             }
 
         }
+        else{
+            operationsLabel.text! += "ANS"
+        }
     }
 
     @IBAction func plusButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
                 operationsLabel.text! += "+"
             }
             if endOfOperationLine(operationsLabel.text!){
@@ -283,7 +284,7 @@ class ViewController: UIViewController {
     
     @IBAction func minusButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
                 operationsLabel.text! += "⁃"
                 
             }
@@ -297,7 +298,7 @@ class ViewController: UIViewController {
     
     @IBAction func mutipleButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
             operationsLabel.text! += "x"
             }
             if endOfOperationLine(operationsLabel.text!){
@@ -309,7 +310,7 @@ class ViewController: UIViewController {
     
     @IBAction func divisonButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
             operationsLabel.text! += "/"
             }
             if endOfOperationLine(operationsLabel.text!){
@@ -321,7 +322,7 @@ class ViewController: UIViewController {
     
     @IBAction func squareButton(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
                 operationsLabel.text! += "^"
             }
             if endOfOperationLine(operationsLabel.text!){
@@ -451,6 +452,10 @@ class ViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipeDown)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
+        self.view.addGestureRecognizer(longPressRecognizer)
+
     }
 }
 
