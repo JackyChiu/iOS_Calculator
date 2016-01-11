@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Jacky Chiu on 2015-12-24.
-//  Copyright © 2015 Jacky Chiu. All rights reserved.
+//  Copyright © 2015 Jacky Chiu. 
 //
 
 import UIKit
@@ -25,18 +25,6 @@ extension String {
 }
 
 class ViewController: UIViewController {
-    
-    var finalAnswer: Float! = 0.0
-    var answer: Float! = 0.0
-    var numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
-    var numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
-    var operationsList = ["=","+","⁃","x","/","^"]
-    var operationsListWithNegative = ["=","+","⁃","x","/","^","-"]
-    var operationsListWithoutEquals = ["+","⁃","x","/"]
-    var operationsListWithoutEqualsWithExponent = ["+","⁃","x","/","^"]
-    var higherPrecOperationsList = ["x","/"]
-    var lowerPrecOperationsList = ["+","⁃","="]
-    var colorRoation:Int = 0
     
     func listIsInPartString(varible:String,list:[String])->Bool{
         for i in list{

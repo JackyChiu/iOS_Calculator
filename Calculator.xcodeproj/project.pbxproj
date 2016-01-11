@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1407B2F51C3F6F7A0055211C /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1407B2F41C3F6F7A0055211C /* DataModel.swift */; };
 		14487CEE1C2C845B0094C292 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14487CED1C2C845B0094C292 /* AppDelegate.swift */; };
 		14487CF01C2C845B0094C292 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14487CEF1C2C845B0094C292 /* ViewController.swift */; };
 		14487CF61C2C845B0094C292 /* Calculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14487CF41C2C845B0094C292 /* Calculator.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1407B2F41C3F6F7A0055211C /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		14487CEA1C2C845B0094C292 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14487CED1C2C845B0094C292 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14487CEF1C2C845B0094C292 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				14487D1E1C2C85AA0094C292 /* Spring */,
 				14487CED1C2C845B0094C292 /* AppDelegate.swift */,
 				14487CEF1C2C845B0094C292 /* ViewController.swift */,
+				1407B2F41C3F6F7A0055211C /* DataModel.swift */,
 				14487CF71C2C845B0094C292 /* Assets.xcassets */,
 				14487D5B1C2CAB400094C292 /* Main.storyboard */,
 				14487CF91C2C845B0094C292 /* LaunchScreen.storyboard */,
@@ -383,6 +386,7 @@
 				14487D531C2C85AA0094C292 /* SpringLabel.swift in Sources */,
 				14487D3D1C2C85AA0094C292 /* AsyncButton.swift in Sources */,
 				14487D3E1C2C85AA0094C292 /* AsyncImageView.swift in Sources */,
+				1407B2F51C3F6F7A0055211C /* DataModel.swift in Sources */,
 				14487D461C2C85AA0094C292 /* DesignableTextView.swift in Sources */,
 				14487D561C2C85AA0094C292 /* SpringView.swift in Sources */,
 				14487D551C2C85AA0094C292 /* SpringTextView.swift in Sources */,

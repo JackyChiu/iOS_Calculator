@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Jacky Chiu on 2015-12-24.
-//  Copyright © 2015 Jacky Chiu. All rights reserved.
+//  Copyright © 2015 Jacky Chiu. 
 //
 
 import UIKit
