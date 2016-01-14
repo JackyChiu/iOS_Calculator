@@ -324,8 +324,8 @@ class ViewController: UIViewController {
     @IBAction func equalButton(sender: UIButton) {
         
         var operationsLine:String
-        var input1:Float!
-        var input2:Float!
+        var input1:Double!
+        var input2:Double!
         var operatorPosition:Int!
         var startPosition:Int!
         var endPosition:Int!
@@ -373,7 +373,7 @@ class ViewController: UIViewController {
                             startPosition = i + 1
                         }
                         if listIsInPartString(operationsLine[i], list: listToBeIn){
-                            input1 = Float(operationsLine[startPosition..<i])
+                            input1 = Double(operationsLine[startPosition..<i])
                             //print(input1)
                             operation = operationsLine[i]
                             //print(operation)
@@ -387,7 +387,7 @@ class ViewController: UIViewController {
                     
                     for j in operatorPosition..<operationsLine.length{
                         if listIsInPartString(operationsLine[j], list: operationsList){
-                            input2 = Float(operationsLine[operatorPosition..<j])
+                            input2 = Double(operationsLine[operatorPosition..<j])
                             //print(input2)
                             endPosition = j
                             break
@@ -422,7 +422,7 @@ class ViewController: UIViewController {
                     
                 }
                 
-                    finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
+                    finalAnswer = Double(operationsLine[0..<operationsLine.length-1])
                     //print(answer)
                     answerLabel.text = String(finalAnswer)
                 }
