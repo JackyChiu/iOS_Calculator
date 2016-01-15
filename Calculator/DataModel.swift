@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-    var finalAnswer: Double! = 0.0
-    var answer: Double! = 0.0
+    var finalAnswer: Float! = 0.0
+    var answer: Float! = 0.0
     let numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
     let numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
     let operationsList = ["=","+","⁃","x","/","^"]
