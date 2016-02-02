@@ -4,8 +4,13 @@ A simple calculator for iOS.
 
 A calculator made with Swift 2.0 in Xcode for iOS. Done as a project to explore mobile application development. Calculator works with multiple numbers and operations, decimal numbers, and squares. The functionality of the calculator was inspired by my current Casio fx calculator. Another motivation for creating this is that I did not enjoy the default calculator provided on iOS. Calculator design was done in Sketch as well as in StoryBoard.
 
-**Features:**
- An ANS key was added to recall the last answer. Order of precidence has been implimented. The calculator features a screen that displays what your calculating as you punch in the inputs and operations. You can also swipe up and down to change the colours of the operation buttons. 
+----
+## Features
+- The calculator follows an order of precidence 
+- An ANS key to recall the last answer from calculation
+- Calculator recognizes when you continue calculations after a previous calculation (ex. 1+1=, Calculator will display 2, and right after if you hit x5, it will directly go to ANSx5)
+- 2 seperate "screens", one to display values as you input and operations, and one to display answer
+- You can also swipe up and down to change the colours of the operation buttons. 
 
 ![CalcDisplay](http://imgur.com/5SRabqE.png)
 
