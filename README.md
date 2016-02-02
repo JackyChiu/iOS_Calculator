@@ -2,7 +2,9 @@
 
 A simple calculator for iOS.
 
-A calculator made with Swift 2.0 in Xcode for iOS. Done as a project to explore mobile application development. Calculator works with multiple numbers and operations, decimal numbers, and squares. The functionality of the calculator was inspired by my current Casio fx calculator. Another motivation for creating this is that I did not enjoy the default calculator provided on iOS. Calculator design was done in Sketch as well as in StoryBoard.
+A calculator made with Swift 2.0 in Xcode for iOS. Done as a project to explore mobile application development. Calculator works with multiple numbers and operations, decimal numbers, and squares. The functionality of the calculator was inspired by my current Casio fx calculator. Another motivation for creating this is that I did not enjoy the default calculator provided on iOS. The Calculator design was done in Sketch as well as in StoryBoard mostly focused towards for the iPhone 6 (4.7 inch) screen.
+
+**ISSUE:** Currently the design of the calculator only works well on iPhone 6 (4.7 inch) screens. This is due to the way I set the constraints in storyboard. I will look into making a more responsive design later on.
 
 ----
 ## Features
