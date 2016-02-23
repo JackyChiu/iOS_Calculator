@@ -26,6 +26,20 @@ extension String {
 
 class ViewController: UIViewController {
     
+    // Supporting varibles
+    var finalAnswer: Float! = 0.0
+    var answer: Float! = 0.0
+    let numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
+    let numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
+    let operationsList = ["=","+","⁃","x","/","^"]
+    let operationsListWithNegative = ["=","+","⁃","x","/","^","-"]
+    let operationsListWithoutEquals = ["+","⁃","x","/"]
+    let operationsListWithoutEqualsWithExponent = ["+","⁃","x","/","^"]
+    let higherPrecOperationsList = ["x","/"]
+    let lowerPrecOperationsList = ["+","⁃","="]
+    var colorRoation:Int = 0
+    
+    // Supporting functions
     func listIsInPartString(varible:String,list:[String])->Bool{
         for i in list{
             if varible == i{
@@ -327,7 +341,7 @@ class ViewController: UIViewController {
         var input1:Float!
         var input2:Float!
         var operatorPosition:Int!
-        var startPosition:Int!
+        var startPosition:Int
         var endPosition:Int!
         var operation:Character = "A"
         var listToBeNotIn:[String] = []

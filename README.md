@@ -12,6 +12,7 @@ A calculator made with Swift 2.0 in Xcode for iOS. Done as a project to explore 
 - An ANS key to recall the last answer from calculation
 - Calculator recognizes when you continue calculations after a previous calculation (ex. 1+1=, Calculator will display 2, and right after if you hit x5, it will directly go to ANSx5)
 - 2 seperate "screens", one to display values as you input and operations, and one to display answer
+- Holding onto the DEL button, will clear both screens
 - You can also swipe up and down to change the colours of the operation buttons. 
 
 ![CalcDisplay](http://imgur.com/5SRabqE.png)
