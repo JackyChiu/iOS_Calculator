@@ -20,44 +20,18 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
+        return substringWithRange(startIndex.advancedBy(r.startIndex)..<startIndex.advancedBy(r.endIndex))
     }
 }
 
 class ViewController: UIViewController {
-    
-    // Supporting varibles
-    var finalAnswer: Float! = 0.0
-    var answer: Float! = 0.0
-    let numbersList = [".","0","1","2","3","4","5","6","7","8","9","S"]
-    let numbersListWithNegative = ["-",".","0","1","2","3","4","5","6","7","8","9","S"]
-    let operationsList = ["=","+","⁃","x","/","^"]
-    let operationsListWithNegative = ["=","+","⁃","x","/","^","-"]
-    let operationsListWithoutEquals = ["+","⁃","x","/"]
-    let operationsListWithoutEqualsWithExponent = ["+","⁃","x","/","^"]
-    let higherPrecOperationsList = ["x","/"]
-    let lowerPrecOperationsList = ["+","⁃","="]
+
     var colorRoation:Int = 0
     
-    // Supporting functions
-    func listIsInPartString(varible:String,list:[String])->Bool{
-        for i in list{
-            if varible == i{
-                return true
-            }
+    func deleteLastEntry() {
+        if operationsLabel.text! != ""{
+            operationsLabel.text!.removeAtIndex(operationsLabel.text!.endIndex.predecessor())
         }
-        return false
-    }
-    
-    func listIsInWholeString(varible:String, list:[String])->Bool{
-        for i in varible.characters{
-            for j in list{
-                if String(i) == j{
-                    return true
-                }
-            }
-        }
-        return false
     }
     
     func clearLabel(){
@@ -69,30 +43,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func deleteLastEntry() {
-        if operationsLabel.text! != ""{
-            operationsLabel.text!.removeAtIndex(operationsLabel.text!.endIndex.predecessor())
-        }
-    }
-    
     func longPressed(sender:UILongPressGestureRecognizer){
         clearLabel()
-    }
-    
-    func onlyEqualsLeft(operationsLine:String)->Bool{
-        for i in 0..<operationsLine.length{
-            if listIsInPartString(String(operationsLine[i]), list: operationsListWithoutEqualsWithExponent){
-                return false
-            }
-        }
-        return true
-    }
-    
-    func endOfOperationLine(operationsLine:String)->Bool{
-        if operationsLine[operationsLine.length-1] == "="{
-         return true
-        }
-        return false
     }
 
     func respondToSwipeGesture(gesture: UIGestureRecognizer){
@@ -104,13 +56,13 @@ class ViewController: UIViewController {
 
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             if swipeGesture.direction == UISwipeGestureRecognizerDirection.Up{
-                colorRoation++
+                colorRoation += 1
                 if colorRoation >= colorList.count{
                     colorRoation = 0
                 }
             }
             else if swipeGesture.direction == UISwipeGestureRecognizerDirection.Down{
-                colorRoation--
+                colorRoation -= 1
                 if colorRoation < 0{
                     colorRoation = colorList.count-1
                 }
@@ -134,105 +86,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var plus: UIButton!
     @IBOutlet weak var equal: UIButton!
     
-    //button actions
-    //Number buttons
-    @IBAction func decimalButton(sender: UIButton) {
+    //Number button
+    @IBAction func numpadWasPressed(sender: UIButton) {
         if operationsLabel.text! != ""{
             if endOfOperationLine(operationsLabel.text!) == true{
                 clearLabel()
             }
         }
-        operationsLabel.text! += "."
-    }
-
-    @IBAction func zeroButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "0"
-    }
- 
-    @IBAction func oneButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "1"
-    }
-
-    @IBAction func twoButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "2"
-    }
-    
-    @IBAction func threeButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "3"
-    }
-    
-    @IBAction func fourButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "4"
-    }
-    
-    @IBAction func fiveButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "5"
-    }
-
-    @IBAction func sixButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "6"
-    }
-    
-    @IBAction func sevenButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "7"
-    }
-    
-    @IBAction func eightButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "8"
-    }
-    
-    @IBAction func nineButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if endOfOperationLine(operationsLabel.text!) == true{
-                clearLabel()
-            }
-        }
-        operationsLabel.text! += "9"
+        operationsLabel.text! += sender.currentTitle!
     }
     
     //Operations buttons
@@ -246,7 +107,7 @@ class ViewController: UIViewController {
                 clearLabel()
                 operationsLabel.text! += "-"
             }
-            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersListWithNegative) == false{
+            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.characters.count-1], list: numbersListWithNegative) == false{
                 operationsLabel.text! += "-"
             }
         }
@@ -261,7 +122,7 @@ class ViewController: UIViewController {
                 clearLabel()
                 operationsLabel.text! += "ANS"
             }
-            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: numbersList) == false{
+            else if listIsInPartString(operationsLabel.text![operationsLabel.text!.characters.count-1], list: numbersList) == false{
                 operationsLabel.text! += "ANS"
             }
 
@@ -271,191 +132,35 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func plusButton(sender: UIButton) {
+    @IBAction func operatorWasPressed(sender: UIButton) {
         if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
-                operationsLabel.text! += "+"
+            if listIsInPartString(operationsLabel.text![operationsLabel.text!.characters.count-1], list: operationsListWithNegative) == false{
+                operationsLabel.text! += sender.currentTitle!
             }
             if endOfOperationLine(operationsLabel.text!){
                 clearLabel()
-                operationsLabel.text! += "ANS+"
-            }
-        }
-
-    }
-    
-    @IBAction func minusButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
-                operationsLabel.text! += "⁃"
-                
-            }
-            if endOfOperationLine(operationsLabel.text!){
-                clearLabel()
-                operationsLabel.text! += "ANS⁃"
-            }
-
-        }
-    }
-    
-    @IBAction func mutipleButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
-            operationsLabel.text! += "x"
-            }
-            if endOfOperationLine(operationsLabel.text!){
-                clearLabel()
-                operationsLabel.text! += "ANSx"
+                operationsLabel.text! += ("ANS" + sender.currentTitle!)
             }
         }
     }
-    
-    @IBAction func divisonButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
-            operationsLabel.text! += "/"
-            }
-            if endOfOperationLine(operationsLabel.text!){
-                clearLabel()
-                operationsLabel.text! += "ANS/"
-            }
-        }
-    }
-    
-    @IBAction func squareButton(sender: UIButton) {
-        if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsListWithNegative) == false{
-                operationsLabel.text! += "^"
-            }
-            if endOfOperationLine(operationsLabel.text!){
-                clearLabel()
-                operationsLabel.text! += "ANS^"
-            }
-        }
-    }
-    
 
     @IBAction func equalButton(sender: UIButton) {
+       let calculator = Calculator(line: operationsLabel.text!)
+        operationsLabel.text! += "="
+       answerLabel.text = calculator.calculate()
+    }
         
-        var operationsLine:String
-        var input1:Float!
-        var input2:Float!
-        var operatorPosition:Int!
-        var startPosition:Int
-        var endPosition:Int!
-        var operation:Character = "A"
-        var listToBeNotIn:[String] = []
-        var listToBeIn:[String] = []
-        
-        if operationsLabel.text! != ""{
-            if listIsInPartString(operationsLabel.text![operationsLabel.text!.length-1], list: operationsList) == false{
-                operationsLabel.text! += "="
-            
-    
-                operationsLine = operationsLabel.text!
-                //replacements in the string
-                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("ANS", withString: String(finalAnswer))
-                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("e+", withString: String("e"))
-                operationsLine = operationsLine.stringByReplacingOccurrencesOfString("--", withString: String(""))
-
-                //loop to read the string of operations
-                while(onlyEqualsLeft(operationsLine)==false){
-                    
-                    //eCase = false
-                    startPosition = 0
-                
-                    //Cases with expoentals
-                    if listIsInWholeString(operationsLine, list:["^"]){
-                        listToBeNotIn = operationsListWithoutEquals
-                        listToBeIn = ["^"]
-    
-                    }
-                    //Cases with higher precedence
-                    else if listIsInWholeString(operationsLine, list: higherPrecOperationsList){
-                        listToBeNotIn = lowerPrecOperationsList
-                        listToBeIn = higherPrecOperationsList
-                    }
-                        
-                    else{
-                        listToBeNotIn = [""]
-                        listToBeIn = lowerPrecOperationsList
-                    }
-                    
-                    //Main 2 loops that determine inputs
-                    for i in 0..<operationsLine.length{
-                        if listIsInPartString(operationsLine[i], list: listToBeNotIn){
-                            startPosition = i + 1
-                        }
-                        if listIsInPartString(operationsLine[i], list: listToBeIn){
-                            input1 = Float(operationsLine[startPosition..<i])
-                            //print(input1)
-                            operation = operationsLine[i]
-                            //print(operation)
-                    
-                                operatorPosition = i + 1
-                            
-                            break
-                        }
-                        
-                    }
-                    
-                    for j in operatorPosition..<operationsLine.length{
-                        if listIsInPartString(operationsLine[j], list: operationsList){
-                            input2 = Float(operationsLine[operatorPosition..<j])
-                            //print(input2)
-                            endPosition = j
-                            break
-                        }
-                    }
-                    
-                    switch operation{
-                        
-                        case "+":
-                        answer = input1 + input2
-                        
-                        case "⁃":
-                        answer = input1 - input2
-                        
-                        case "x":
-                        answer = input1 * input2
-                        
-                        case "/":
-                        answer = input1 / input2
-                        
-                        case "^":
-                        answer = pow(input1,input2)
-                        
-                        default:
-                        answer = nil
-                        
-                    }
-                    //print(answer)
-                    operationsLine = operationsLine.stringByReplacingOccurrencesOfString(operationsLine[startPosition..<endPosition], withString: String(answer))
-                    operationsLine = operationsLine.stringByReplacingOccurrencesOfString("e+", withString: String("e"))
-                    //print(operationsLine)
-                    
-                }
-                
-                    finalAnswer = Float(operationsLine[0..<operationsLine.length-1])
-                    //print(answer)
-                    answerLabel.text = String(finalAnswer)
-                }
-
-
-            }
-
-        }
 
     override func viewDidLoad() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.respondToSwipeGesture(_:)))
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
         self.view.addGestureRecognizer(swipeUp)
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.respondToSwipeGesture(_:)))
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipeDown)
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPressed(_:)))
         self.view.addGestureRecognizer(longPressRecognizer)
 
     }

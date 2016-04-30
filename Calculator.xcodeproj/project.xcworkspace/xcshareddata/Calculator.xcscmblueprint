@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C90558F30C974F876BC23C0E47461895CF5B2CD2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C90558F30C974F876BC23C0E47461895CF5B2CD2" : 0,
+    "71F5D8D885CFF6BD7151066D7BFF25CC48A5235E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D36732E5-1128-4BC5-8BFA-9E2AA313BD39",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C90558F30C974F876BC23C0E47461895CF5B2CD2" : "iOS_Calculator\/",
+    "71F5D8D885CFF6BD7151066D7BFF25CC48A5235E" : "Spring\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Calculator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Calculator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MengTo\/Spring.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "71F5D8D885CFF6BD7151066D7BFF25CC48A5235E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JackyChiu\/iOS_Calculator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C90558F30C974F876BC23C0E47461895CF5B2CD2"
+    }
+  ]
+}
