@@ -64,7 +64,7 @@ class Calculator{
         operationsLine = line
     }
     
-    func calculate()->String{
+    func calculate()->Float{
         var input1:Float!
         var input2:Float!
         var operatorPosition:Int!
@@ -165,7 +165,7 @@ class Calculator{
                 print(answer)
             }
         }
-        return String(finalAnswer)
+        return finalAnswer
     }
 }
 

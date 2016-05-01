@@ -147,7 +147,7 @@ class ViewController: UIViewController {
     @IBAction func equalButton(sender: UIButton) {
        let calculator = Calculator(line: operationsLabel.text!)
         operationsLabel.text! += "="
-       answerLabel.text = calculator.calculate()
+       answerLabel.text = String(calculator.calculate())
     }
         
 
