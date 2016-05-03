@@ -30,7 +30,12 @@ class ViewController: UIViewController {
     
     func deleteLastEntry() {
         if operationsLabel.text! != ""{
-            operationsLabel.text!.removeAtIndex(operationsLabel.text!.endIndex.predecessor())
+            if operationsLabel.text![operationsLabel.text!.endIndex.predecessor()] == "S"{
+                operationsLabel.text!.removeRange(operationsLabel.text!.endIndex.advancedBy(-3)..<operationsLabel.text!.endIndex)
+            }
+            else{
+                operationsLabel.text!.removeAtIndex(operationsLabel.text!.endIndex.predecessor())
+            }
         }
     }
     
